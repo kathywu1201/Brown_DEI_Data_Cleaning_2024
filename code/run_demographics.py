@@ -20,7 +20,7 @@ data = apply_courselevel(data)
 
 # calculate the column percentage
 data = calculate_percentage(data)
-print(data)
+# print(data)
 
 # check is the sum of the columns are equal to 100
 if check_sum_100(data):
