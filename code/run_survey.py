@@ -6,7 +6,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # path to your Excel file
-excel_path = 'data/Percentage Project Example.xlsx'
+excel_path = '../data/Percentage Project Example.xlsx'
 
 # load the Excel file to list all sheet names
 xls = pd.ExcelFile(excel_path)
