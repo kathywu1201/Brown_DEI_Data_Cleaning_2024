@@ -5,7 +5,7 @@ from utils import *
 
 # fill out the path to the spreadsheets and select the specific semester year we want
 file_path = '../data/Course Demographics Example.xlsx'
-year = 'Spring 2023'
+year = 'Spring 2024'
 
 # load spreadsheet
 df, all_sheets = load_spreadsheet(file_path)
@@ -25,6 +25,9 @@ data = apply_courselevel(data)
 data = calculate_percentage_new(data)
 
 data.rename(columns={'[Sex] Male.1': '[Sex] Prefer Not to Say'}, inplace=True)
+
+# add the rows with the calcualted average
+data = calculate_average(data)
 
 print(data)
 

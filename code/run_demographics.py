@@ -28,6 +28,9 @@ for year, data in all_sheets:
     # data = calculate_percentage(data)
     data = calculate_percentage_new(data)
 
+    # add the rows with the calcualted average
+    data = calculate_average(data)
+
     # save the dataframe to a dictionary with the correspoding year
     dict_processed_data[year] = data
     # print(data)

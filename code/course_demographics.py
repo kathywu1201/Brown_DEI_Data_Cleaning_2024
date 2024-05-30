@@ -70,3 +70,36 @@ def check_sum_100(data):
             return False
     print('Columns sum up to 100')
     return True
+
+def calculate_average(data):
+    # columns that need to be averaged
+    average_columns = [col for col in data.columns if col not in ['CourseName', 'CourseLevel', 'Total Enrollment']]
+
+    # calculate the mean for each course level
+    course_level_means = data.groupby('CourseLevel')[average_columns].mean(numeric_only=True).reset_index()
+    course_level_means['CourseName'] = 'Average within ' + course_level_means['CourseLevel'].astype(str)
+
+    course_level_means = course_level_means.round(4)
+
+    # calculate the sum for Total Enrollment
+    total_enrollment_sum = data.groupby('CourseLevel')['Total Enrollment'].sum().reset_index()
+    total_enrollment_sum['CourseName'] = 'Average within ' + total_enrollment_sum['CourseLevel'].astype(str)
+
+    course_level_summary = pd.merge(course_level_means, total_enrollment_sum, on=['CourseLevel', 'CourseName'])
+
+    # calculate the mean across all course levels
+    overall_mean = data[average_columns].mean(numeric_only=True).to_frame().T
+    overall_mean['CourseName'] = 'Overall Average'
+    overall_mean['CourseLevel'] = 'All Levels'
+
+    overall_mean = overall_mean.round(4)
+
+    # calculate the sum for Total Enrollment
+    total_enrollment_overall_sum = data['Total Enrollment'].sum()
+    overall_mean['Total Enrollment'] = total_enrollment_overall_sum
+
+    # append the average to the original dataframe
+    df_with_averages = pd.concat([data, course_level_summary, overall_mean], ignore_index=True)
+
+    return df_with_averages
+
