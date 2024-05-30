@@ -11,7 +11,7 @@ def load_spreadsheet(file_path):
         processed_dataframe[sheet_name] = data
     
     print('Total number of spreadsheets:', len(processed_dataframe))
-    return processed_dataframe
+    return processed_dataframe, all_sheets.items()
 
 def rename_column(data):
     new_header = [f'{[i]} {j}' if i != j else f'{i}' for i, j in data.columns]
@@ -54,6 +54,12 @@ def calculate_percentage(data):
     result_data = pd.concat([data[['CourseLevel', 'CourseName']], percentage_columns], axis=1)
     result_data = pd.concat([result_data, data[['Total Enrollment']]], axis=1)
     return result_data
+
+def calculate_percentage_new(data):
+    for column in data.columns:
+        if column != 'Total Enrollment' and column != 'CourseName' and column != 'CourseLevel':
+            data[column] = ((data[column] / data['Total Enrollment']) * 100).round(4)
+    return data
 
 def check_sum_100(data):
     column_sums = data.set_index(['CourseName', 'Total Enrollment', 'CourseLevel']).sum().round(4)
