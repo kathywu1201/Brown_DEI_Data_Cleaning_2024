@@ -105,11 +105,11 @@ def calculate_percentage(data):
     result_data = pd.concat([result_data, data[['Total Enrollment']]], axis=1)
     return result_data
 
-
 def calculate_percentage_new(data):
     for column in data.columns:
-        if column != 'Race/Ethnicity Total Enrollment':
-            data[column] = ((data[column] / data['Race/Ethnicity Total Enrollment']) * 100).round(2)
+        if column != 'Total Enrollment' and column != 'Concentration':
+            data[column] = ((data[column] / data['Total Enrollment']) * 100).round(4)
+    return data
 
 def check_sum_100(data):
     column_sums = data.set_index(['Concentration', 'Total Enrollment']).sum().round(2)

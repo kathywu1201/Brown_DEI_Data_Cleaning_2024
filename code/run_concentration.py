@@ -37,13 +37,16 @@ data = calculate_total_enrollment(data)
 data = rename_columns(data)
 
 # calculate the percentage of each category in each concentration with respect to the column sum
-data = calculate_percentage(data)
+# data = calculate_percentage(data)
+data = calculate_percentage_new(data)
 
 # change the full concentration name to its abbreviation
 data['Concentration'] = data['Concentration'].replace(concentration_dict)
 print(data)
 
 # check is the sum of the columns are equal to 100
-if check_sum_100(data):
-    # export the data
-    data.to_csv(f'../results/concentration[{current_year}].csv', index=True)
+# if check_sum_100(data):
+#     # export the data
+#     data.to_csv(f'../results/concentration[{current_year}].csv', index=True)
+
+data.to_csv(f'../results/concentration[{current_year}].csv', index=True)
