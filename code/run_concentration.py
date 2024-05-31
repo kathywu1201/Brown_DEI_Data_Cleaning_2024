@@ -40,6 +40,9 @@ data = rename_columns(data)
 # data = calculate_percentage(data)
 data = calculate_percentage_new(data)
 
+# add the rows with the calcualted average
+data = calculate_average(data)
+
 # change the full concentration name to its abbreviation
 data['Concentration'] = data['Concentration'].replace(concentration_dict)
 print(data)

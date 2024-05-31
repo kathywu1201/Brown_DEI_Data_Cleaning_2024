@@ -120,3 +120,26 @@ def check_sum_100(data):
             return False
     print('Columns sum up to 100')
     return True
+
+def calculate_average(data):
+    average_columns = [col for col in data.columns if col not in ['Concentration', 'Total Enrollment']]
+
+    # filter our CyberSecurity
+    filtered_df = data[data['Concentration'] != 'Cybersecurity']
+
+    # calculate the mean for all concetrations except CyberSecurity
+    category_averages = filtered_df[average_columns].mean().to_frame().T
+    category_averages['Concentration'] = 'Average of All Concentrations (excluding Cybersecurity)'
+
+    category_averages = category_averages.round(4)
+
+    # calculate the sum for Total Enrollment
+    total_enrollment_sum = filtered_df['Total Enrollment'].sum()
+    category_averages['Total Enrollment'] = total_enrollment_sum
+
+    df_with_averages = pd.concat([data, category_averages], ignore_index=True)
+
+    return df_with_averages
+
+
+
