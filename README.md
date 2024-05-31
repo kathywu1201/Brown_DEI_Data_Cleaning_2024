@@ -4,7 +4,7 @@
 This repository includes the data processing and cleaning scripts for various surveys conducted by the Equity & Diversity Committee at Brown University. The primary goal of this project is to handle and refine data collected from different departmental surveys, ensuring it is cleaned and formatted for further analysis and decision-making.
 
 ## Usage
-The repository consists of a series of Python scripts located within the 'code' directory. The files prefixed with run_{} are the main scripts that process the raw data into structured CSV files. Supporting utility scripts are also provided to assist with specific functions needed for data output.
+The repository consists of a series of Python scripts located within the 'code' directory. The files prefixed with run_{} are the main scripts that process the raw data into structured CSV files. Supporting utility scripts prefixed with utils_{} are also provided to assist with specific functions needed for data output.
 
 __run_concentration.py:__ This script outputs a CSV file listing the concentrations within the Computer Science Department. Each row represents a concentration, and each column shows the percentage of students in various categories. The script concludes with a summary row that calculates the average percentage for each category.
 
