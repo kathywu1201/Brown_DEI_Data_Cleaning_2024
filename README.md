@@ -1,2 +1,8 @@
 # data_cleaning_DEI_2024
-For data cleaning and processing
+
+## Description
+This project is under the Equity & Diversity Committe at Brown University. The main purpose of this project is to do data processing and cleanning for various survey done in the department.
+
+## Usage
+
+

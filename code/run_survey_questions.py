@@ -8,6 +8,9 @@ warnings.filterwarnings('ignore')
 # path to your Excel file
 excel_path = '../data/Percentage Project Example.xlsx'
 
+# any text you want to put to label the questions
+label = '06.2024'
+
 # load the Excel file to list all sheet names
 xls = pd.ExcelFile(excel_path)
 all_sheets = xls.sheet_names
@@ -33,9 +36,6 @@ for key in data_groups.keys():
 
     # Append to the list
     formatted_lines.append(formatted_line)
-
-# any text you want to put to label the questions
-label = '06.2024'
 
 with open(f'../results/survey_questions[{label}].txt', 'w') as file:
     for line in formatted_lines:

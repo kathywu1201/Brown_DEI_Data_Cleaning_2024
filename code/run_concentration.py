@@ -5,6 +5,7 @@ from datetime import datetime
 import warnings
 warnings.filterwarnings('ignore')
 
+# path to your excel file
 file_path = '../data/Concentration Demographics Example.xlsx'
 
 # concentration abbrev.
