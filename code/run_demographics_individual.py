@@ -3,6 +3,12 @@ import numpy as np
 from course_demographics import *
 from utils import *
 
+#############################################
+# This script generates a CSV file for a selected semester, detailing the courses offered in the Computer Science Department along with their course levels. 
+# Each column represents different demographic categories, with the sum of percentages under each category totaling 100%. 
+# This script also calculates the average percentage across all courses at each course level.
+#############################################
+
 # fill out the path to the spreadsheets and select the specific semester year we want
 file_path = '../data/Course Demographics Example.xlsx'
 year = 'Spring 2024'

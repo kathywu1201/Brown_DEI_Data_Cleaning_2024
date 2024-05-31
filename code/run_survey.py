@@ -5,6 +5,11 @@ from survey import *
 import warnings
 warnings.filterwarnings('ignore')
 
+#############################################
+# This script processes survey data into a CSV file where each row corresponds to a response to a survey question, 
+# and each column represents different demographic categories across all survey tabs.
+#############################################
+
 # path to your Excel file
 excel_path = '../data/Percentage Project Example.xlsx'
 

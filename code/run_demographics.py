@@ -3,6 +3,11 @@ import numpy as np
 from course_demographics import *
 from utils import *
 
+#############################################
+# Similar to run_demographics_individual.py, but this script aggregates data across multiple semesters into a single CSV file, 
+# providing a broader overview of the demographics over time.
+#############################################
+
 # fill out the path to the spreadsheets and select the specific semester year we want
 file_path = '../data/Course Demographics Example.xlsx'
 year = 'Fall 2023'

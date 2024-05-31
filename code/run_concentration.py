@@ -5,6 +5,12 @@ from datetime import datetime
 import warnings
 warnings.filterwarnings('ignore')
 
+#############################################
+# This script outputs a CSV file listing the concentrations within the Computer Science Department. 
+# Each row represents a concentration, and each column shows the percentage of students in various categories. 
+# The script concludes with a summary row that calculates the average percentage for each category.
+#############################################
+
 # path to your excel file
 file_path = '../data/Concentration Demographics Example.xlsx'
 

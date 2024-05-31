@@ -5,6 +5,10 @@ from survey import *
 import warnings
 warnings.filterwarnings('ignore')
 
+#############################################
+# Outputs a text file that contains the full text of each survey question, providing clarity on the data processed in other scripts.
+#############################################
+
 # path to your Excel file
 excel_path = '../data/Percentage Project Example.xlsx'
 
