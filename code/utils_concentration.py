@@ -16,7 +16,7 @@ def load_spreadsheet(file_path):
 
 def concat_sheets(all_sheets):
     for sheet_name, df in all_sheets.items():
-        # Add a new column to each DataFrame with the name of the sheet
+        # add a new column to each dataframe with the name of the sheet
         df['SheetName'] = sheet_name
     
     # combined the dataframes
@@ -37,6 +37,7 @@ def concat_sheets(all_sheets):
     data['Certificate Program Name'] = data['Certificate Program Name'].fillna('None')
     return data
 
+# change the specific year to numbers that are relative to the current year we run this script
 def adjust_year(year):
     # current year
     current_year = datetime.now().year
@@ -71,24 +72,26 @@ def count_category(data):
         category_counts[col] = pivot_df
     
     # combine the different categories into one dataframe
-    # Start with an empty DataFrame or initialize with the first DataFrame
+    # start with an empty DataFrame or initialize with the first DataFrame
     combined_df = None
 
     for name, df in category_counts.items():
         if combined_df is None:
             combined_df = df
         else:
-            # Merge each DataFrame on the 'Key' column
+            # merge each DataFrame on the 'Key' column
             combined_df = pd.merge(combined_df, df, on='SheetName', how='left')
 
     return combined_df
 
+# calculate the total enrollment of in each concentration
 def calculate_total_enrollment(data):
     result = data.groupby(axis=1, level=0).sum()
     data['Total Enrollment'] = result.iloc[:,-1]
     data = data.fillna(0)
     return data
 
+# rename the columns
 def rename_columns(data):
     new_header = [f'{[i]} {j}' if i != j else f'{i}' for i, j in data.columns]
     data.columns = new_header
@@ -97,30 +100,33 @@ def rename_columns(data):
     data.rename(columns={'[Total Enrollment] ': 'Total Enrollment'}, inplace=True)
     return data
 
-def calculate_percentage(data):
-    data.columns = data.columns.str.replace(r"[\[\]']", "")
-    percentage_columns = data.select_dtypes(include=['number']).drop('Total Enrollment', axis=1).apply(lambda x: 100 * x / x.sum()).round(2)
-    percentage_columns['Total Enrollment Percentage'] = (100 * data['Total Enrollment'] / data['Total Enrollment'].sum()).round(2)
-    result_data = pd.concat([data[['Concentration']], percentage_columns], axis=1)
-    result_data = pd.concat([result_data, data[['Total Enrollment']]], axis=1)
-    return result_data
+# def calculate_percentage(data): # NOT USED
+#     data.columns = data.columns.str.replace(r"[\[\]']", "")
+#     percentage_columns = data.select_dtypes(include=['number']).drop('Total Enrollment', axis=1).apply(lambda x: 100 * x / x.sum()).round(2)
+#     percentage_columns['Total Enrollment Percentage'] = (100 * data['Total Enrollment'] / data['Total Enrollment'].sum()).round(2)
+#     result_data = pd.concat([data[['Concentration']], percentage_columns], axis=1)
+#     result_data = pd.concat([result_data, data[['Total Enrollment']]], axis=1)
+#     return result_data
 
+# calculate the percentage for each column with respect to the total enrollment of each course
+# under each tab, the values sum up to 100
 def calculate_percentage_new(data):
     for column in data.columns:
         if column != 'Total Enrollment' and column != 'Concentration':
             data[column] = ((data[column] / data['Total Enrollment']) * 100).round(4)
     return data
 
-def check_sum_100(data):
-    column_sums = data.set_index(['Concentration', 'Total Enrollment']).sum().round(2)
-    is_close_to_100 = np.isclose(column_sums, 100, atol=0.01)
-    for i in is_close_to_100:
-        if not i:
-            print('summation error')
-            return False
-    print('Columns sum up to 100')
-    return True
+# def check_sum_100(data): # NOT USED
+#     column_sums = data.set_index(['Concentration', 'Total Enrollment']).sum().round(2)
+#     is_close_to_100 = np.isclose(column_sums, 100, atol=0.01)
+#     for i in is_close_to_100:
+#         if not i:
+#             print('summation error')
+#             return False
+#     print('Columns sum up to 100')
+#     return True
 
+# calculat the average percentages of the aggregated rows
 def calculate_average(data):
     average_columns = [col for col in data.columns if col not in ['Concentration', 'Total Enrollment']]
 

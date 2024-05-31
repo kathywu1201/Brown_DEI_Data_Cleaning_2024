@@ -37,7 +37,8 @@ def categorize_course(course_id):
         return 'Advanced'
     else:
         return 'Grad'
-    
+
+# apply the differet course level and sort the levels
 def apply_courselevel(data):
     data['courseID'] = data['CourseName'].str.extract(r'(\d+)').astype(int)
     data['CourseLevel'] = data['courseID'].apply(categorize_course)
@@ -47,30 +48,33 @@ def apply_courselevel(data):
     data = data.drop(['courseID'], axis=1)
     return data
 
-def calculate_percentage(data):
-    data.columns = data.columns.str.replace(r"[\[\]']", "")
-    percentage_columns = data.select_dtypes(include=['number']).drop('Total Enrollment', axis=1).apply(lambda x: 100 * x / x.sum()).round(4)
-    percentage_columns['Total Enrollment Percentage'] = (100 * data['Total Enrollment'] / data['Total Enrollment'].sum()).round(4)
-    result_data = pd.concat([data[['CourseLevel', 'CourseName']], percentage_columns], axis=1)
-    result_data = pd.concat([result_data, data[['Total Enrollment']]], axis=1)
-    return result_data
+# def calculate_percentage(data): # NOT USED
+#     data.columns = data.columns.str.replace(r"[\[\]']", "")
+#     percentage_columns = data.select_dtypes(include=['number']).drop('Total Enrollment', axis=1).apply(lambda x: 100 * x / x.sum()).round(4)
+#     percentage_columns['Total Enrollment Percentage'] = (100 * data['Total Enrollment'] / data['Total Enrollment'].sum()).round(4)
+#     result_data = pd.concat([data[['CourseLevel', 'CourseName']], percentage_columns], axis=1)
+#     result_data = pd.concat([result_data, data[['Total Enrollment']]], axis=1)
+#     return result_data
 
+# calculate the percentage for each column with respect to the total enrollment of each course
+# under each tab, the values sum up to 100
 def calculate_percentage_new(data):
     for column in data.columns:
         if column != 'Total Enrollment' and column != 'CourseName' and column != 'CourseLevel':
             data[column] = ((data[column] / data['Total Enrollment']) * 100).round(4)
     return data
 
-def check_sum_100(data):
-    column_sums = data.set_index(['CourseName', 'Total Enrollment', 'CourseLevel']).sum().round(4)
-    is_close_to_100 = np.isclose(column_sums, 100, atol=0.01)
-    for i in is_close_to_100:
-        if not i:
-            print('summation error')
-            return False
-    print('Columns sum up to 100')
-    return True
+# def check_sum_100(data): # NOT USED
+#     column_sums = data.set_index(['CourseName', 'Total Enrollment', 'CourseLevel']).sum().round(4)
+#     is_close_to_100 = np.isclose(column_sums, 100, atol=0.01)
+#     for i in is_close_to_100:
+#         if not i:
+#             print('summation error')
+#             return False
+#     print('Columns sum up to 100')
+#     return True
 
+# calculat the average percentages of the aggregated rows
 def calculate_average(data):
     # columns that need to be averaged
     average_columns = [col for col in data.columns if col not in ['CourseName', 'CourseLevel', 'Total Enrollment']]

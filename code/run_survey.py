@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from datetime import datetime
-from survey import *
+from data_cleaning_DEI_2024.code.utils_survey import *
 import warnings
 warnings.filterwarnings('ignore')
 

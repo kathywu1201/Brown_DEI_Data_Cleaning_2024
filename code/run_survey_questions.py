@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from datetime import datetime
-from survey import *
+from data_cleaning_DEI_2024.code.utils_survey import *
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -26,6 +26,8 @@ sheets_to_read = [sheet for sheet in all_sheets if sheet != 'Summary']
 
 # read in one sheet at a time
 data_groups = extract_data_groups(excel_path, sheets_to_read[0])
+
+# return a document that pair the question numbers and corresponding questions.
 
 # create a list to store formatted strings
 formatted_lines = []

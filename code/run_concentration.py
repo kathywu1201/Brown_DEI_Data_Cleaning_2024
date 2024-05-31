@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from concentration import *
+from data_cleaning_DEI_2024.code.utils_concentration import *
 from datetime import datetime
 import warnings
 warnings.filterwarnings('ignore')
@@ -53,10 +53,5 @@ data = calculate_average(data)
 # change the full concentration name to its abbreviation
 data['Concentration'] = data['Concentration'].replace(concentration_dict)
 print(data)
-
-# check is the sum of the columns are equal to 100
-# if check_sum_100(data):
-#     # export the data
-#     data.to_csv(f'../results/concentration[{current_year}].csv', index=True)
 
 data.to_csv(f'../results/concentration[{current_year}].csv', index=True)

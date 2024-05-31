@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from course_demographics import *
+from data_cleaning_DEI_2024.code.utils_course_demographics import *
 from utils import *
 
 #############################################
@@ -35,12 +35,7 @@ data.rename(columns={'[Sex] Male.1': '[Sex] Prefer Not to Say'}, inplace=True)
 # add the rows with the calcualted average
 data = calculate_average(data)
 
-print(data)
-
-# check is the sum of the columns are equal to 100
-# if check_sum_100(data):
-#     # export the data
-#     data.to_csv(f'../results/demographic[{year}].csv', index=True)
+# print(data)
 
 # export the data
 data.to_csv(f'../results/demographic[{year}].csv', index=True)
