@@ -1,20 +1,20 @@
 # Brown_DEI_Data_Cleaning_2024
 
 ## Description
-This project is under the Equity & Diversity Committe at Brown University. The main purpose of this project is to do data processing and cleanning for various survey done in the department.
+This repository includes the data processing and cleaning scripts for various surveys conducted by the Equity & Diversity Committee at Brown University. The primary goal of this project is to handle and refine data collected from different departmental surveys, ensuring it is cleaned and formatted for further analysis and decision-making.
 
 ## Usage
-The scripts that need to be run is in the code file. The file names start with 'run_{}.py' are the scripts that we need to run and output processed and cleaned csv files. Other python files are the utils that include the necessary functions that need to be used in outputing each csv files.
+The repository consists of a series of Python scripts located within the 'code' directory. The files prefixed with run_{} are the main scripts that process the raw data into structured CSV files. Supporting utility scripts are also provided to assist with specific functions needed for data output.
 
-__run_concentration.py:__ returns a csv file where each row are the concentrations under the Computer Science Department and columns indicates the percentage in various categories. In the end of this file, there also includes a summary row that calculate the average percentage of each column categories.
+__run_concentration.py:__ This script outputs a CSV file listing the concentrations within the Computer Science Department. Each row represents a concentration, and each column shows the percentage of students in various categories. The script concludes with a summary row that calculates the average percentage for each category.
 
-__run_demographics_indivisual.py:__ returns a csv file of a selected semester that you want to take a look. Each row are the courses offered in the Computer Science Department and the corresponding course level; each columns indicates the parcentage in various categories, under the same tag [], the sum of the percentage is 100%. The percentages are calculated with respect to the total enrollment of each course offered in the department in the selected semester. Additionally, for each course level and all courses, there is a row that calculate the average percentage along each column.
+__run_demographics_individual.py:__ This script generates a CSV file for a selected semester, detailing the courses offered in the Computer Science Department along with their course levels. Each column represents different demographic categories, with the sum of percentages under each category totaling 100%. This script also calculates the average percentage across all courses at each course level.
 
-__run_demographics.py:__ return a csv file of all the semester. The output of this scripts is similar to the indivisual one but is an aggreation of a bunch of semesters.
+__run_demographics.py:__ Similar to run_demographics_individual.py, but this script aggregates data across multiple semesters into a single CSV file, providing a broader overview of the demographics over time.
 
-__run_survey.py:__ return a csv file where each row correspond to a respond of a survey question, while each column represents the demographic categories across all tabs in the original spreadsheet.
+__run_survey.py:__ This script processes survey data into a CSV file where each row corresponds to a response to a survey question, and each column represents different demographic categories across all survey tabs.
 
-__run_survey_questions.py:__ return a txt file which lists the full version of each question.
+__run_survey_questions.py:__ Outputs a text file that contains the full text of each survey question, providing clarity on the data processed in other scripts.
 
 ## Contact
 If you have any questions about this project, please feel free to contact me using the following email address.\
