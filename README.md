@@ -5,4 +5,7 @@ This project is under the Equity & Diversity Committe at Brown University. The m
 
 ## Usage
 
-
+## Contact
+If you have any questions about this project, please feel free to contact me using the following email address.\
+Yanfeiyun Wu (Kathy) \
+Email: yanfeiyun_wu@brown.edu
