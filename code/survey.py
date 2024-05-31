@@ -61,3 +61,5 @@ def combine_question_number(df):
         
     df.drop(['Question Number', 'index'], axis=1, inplace=True)
     return df
+
+# return a document that pair the question numbers and corresponding questions.
