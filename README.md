@@ -16,6 +16,13 @@ __run_survey.py:__ This script processes survey data into a CSV file where each 
 
 __run_survey_questions.py:__ Outputs a text file that contains the full text of each survey question, providing clarity on the data processed in other scripts.
 
+## Built With
+- __Python__ - Main programming languge used
+
+### Dependencies
+- __Pandas__ - For data manipulation and analysis.
+- __NumPy__ - For numerical data processing.
+
 ## Contact
 If you have any questions about this project, please feel free to contact me using the following email address.\
 Yanfeiyun Wu (Kathy), Email: yanfeiyun_wu@brown.edu
