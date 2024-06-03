@@ -14,7 +14,7 @@ Please use `python run_demographics_individual.py 'input_path' 'output_path' 'de
 
 __run_demographics.py:__ Similar to run_demographics_individual.py, but this script aggregates data across multiple semesters into a single CSV file, providing a broader overview of the demographics over time.\
 Update: running run_demographics.py will also output all semester spreadsheets contained in the Excel file.\
-Please use `python run_demographics.py '../data/Course Demographics Example.xlsx' '../results'` to run this script.
+Please use `python run_demographics.py 'input_path' 'output_path'` to run this script.
 
 __run_survey.py:__ This script processes survey data into a CSV file where each row corresponds to a response to a survey question, and each column represents different demographic categories across all survey tabs.\
 Please use `python run_survey.py 'input_path' 'output_path'` to run this script.
