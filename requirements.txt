@@ -1,0 +1,5 @@
+# There are the recommened python and package version
+# Running this text file by `pip install -r requirements.txt` in the terminal can install these dependencies
+python==3.11.4
+pandas==2.0.3
+numpy==1.24.0

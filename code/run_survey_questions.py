@@ -1,7 +1,8 @@
 import pandas as pd
 import numpy as np
 from datetime import datetime
-from data_cleaning_DEI_2024.code.utils_survey import *
+import argparse
+from utils_survey import *
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -9,40 +10,59 @@ warnings.filterwarnings('ignore')
 # Outputs a text file that contains the full text of each survey question, providing clarity on the data processed in other scripts.
 #############################################
 
-# path to your Excel file
-excel_path = '../data/Percentage Project Example.xlsx'
+# example command line of running this script
+# python run_survey_questions.py 'input_path' 'output_path' 'desired_label'
+# python run_survey_questions.py '../data/Percentage Project Example.xlsx' '../results' 'ver06.2024'
 
-# any text you want to put to label the questions
-label = '06.2024'
 
-# load the Excel file to list all sheet names
-xls = pd.ExcelFile(excel_path)
-all_sheets = xls.sheet_names
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('input_file', type=str, help='The path to the input file')
+    parser.add_argument('output_file', type=str, help='The path to the output file')
+    parser.add_argument('desired_label', type=str, help='Desired label of the extracted questions, e.g. data, version')
+    
+    args = parser.parse_args()
+    
+    input_path = args.input_file
+    output_path = args.output_file
+    label = args.desired_label
 
-# filter out the 'Summary' sheet
-sheets_to_read = [sheet for sheet in all_sheets if sheet != 'Summary']
+    print(f"Reading data from {input_path}")
+    print(f"Output will be saved to {output_path}")
 
-# since the questions from different sheets are the same, we will only use the first sheet
 
-# read in one sheet at a time
-data_groups = extract_data_groups(excel_path, sheets_to_read[0])
+    # load the Excel file to list all sheet names
+    xls = pd.ExcelFile(input_path)
+    all_sheets = xls.sheet_names
 
-# return a document that pair the question numbers and corresponding questions.
+    # filter out the 'Summary' sheet
+    sheets_to_read = [sheet for sheet in all_sheets if sheet != 'Summary']
 
-# create a list to store formatted strings
-formatted_lines = []
+    # since the questions from different sheets are the same, we will only use the first sheet
 
-# loop through the dictionary keys
-for key in data_groups.keys():
-    # split the key into question number and question text
-    question_number, question_text = key.split('.', 1)
+    # read in one sheet at a time
+    data_groups = extract_data_groups(input_path, sheets_to_read[0])
 
-    # format the line
-    formatted_line = f"{question_number}: {question_text}"
+    # return a document that pair the question numbers and corresponding questions.
 
-    # Append to the list
-    formatted_lines.append(formatted_line)
+    # create a list to store formatted strings
+    formatted_lines = []
 
-with open(f'../results/survey_questions[{label}].txt', 'w') as file:
-    for line in formatted_lines:
-        file.write(line + '\n')
+    # loop through the dictionary keys
+    for key in data_groups.keys():
+        # split the key into question number and question text
+        question_number, question_text = key.split('.', 1)
+
+        # format the line
+        formatted_line = f"{question_number}: {question_text}"
+
+        # Append to the list
+        formatted_lines.append(formatted_line)
+
+    with open(f'{output_path}/survey_questions[{label}].txt', 'w') as file:
+        for line in formatted_lines:
+            file.write(line + '\n')
+
+
+if __name__ == '__main__':
+    main()

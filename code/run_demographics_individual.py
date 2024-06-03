@@ -1,7 +1,9 @@
 import pandas as pd
 import numpy as np
-from data_cleaning_DEI_2024.code.utils_course_demographics import *
-from utils import *
+import argparse
+from utils_course_demographics import *
+import warnings
+warnings.filterwarnings('ignore')
 
 #############################################
 # This script generates a CSV file for a selected semester, detailing the courses offered in the Computer Science Department along with their course levels. 
@@ -9,33 +11,55 @@ from utils import *
 # This script also calculates the average percentage across all courses at each course level.
 #############################################
 
-# fill out the path to the spreadsheets and select the specific semester year we want
-file_path = '../data/Course Demographics Example.xlsx'
-year = 'Spring 2024'
+# example command line of running this script
+# python run_demographics_individual.py 'input_path' 'output_path' 'desired_semester'
+# python run_demographics_individual.py '../data/Course Demographics Example.xlsx' '../results' 'Fall 2023'
 
-# load spreadsheet
-df, all_sheets = load_spreadsheet(file_path)
 
-print(f">>> Loading spreadsheet for '{year}'")
-data = df[year]
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('input_file', type=str, help='The path to the input file')
+    parser.add_argument('output_file', type=str, help='The path to the output file')
+    parser.add_argument('desired_semester', type=str, help='The semester name of the spreadsheet')
+    
+    args = parser.parse_args()
+    
+    input_path = args.input_file
+    output_path = args.output_file
+    year = args.desired_semester
+    
+    print(f"Reading data from {input_path}")
+    print(f"from semester {year}")
+    print(f"Output will be saved to {output_path}")
 
-# rename the columns
-data = rename_column(data)
 
-# apply course_level
-data = apply_courselevel(data)
-# print(data)
+    # load spreadsheet
+    df, all_sheets = load_spreadsheet(file_path)
 
-# calculate the column percentage
-# data = calculate_percentage(data)
-data = calculate_percentage_new(data)
+    print(f">>> Loading spreadsheet for '{year}'")
+    data = df[year]
 
-data.rename(columns={'[Sex] Male.1': '[Sex] Prefer Not to Say'}, inplace=True)
+    # rename the columns
+    data = rename_column(data)
 
-# add the rows with the calcualted average
-data = calculate_average(data)
+    # apply course_level
+    data = apply_courselevel(data)
+    # print(data)
 
-# print(data)
+    # calculate the column percentage
+    # data = calculate_percentage(data)
+    data = calculate_percentage_new(data)
 
-# export the data
-data.to_csv(f'../results/demographic[{year}].csv', index=True)
+    data.rename(columns={'[Sex] Male.1': '[Sex] Prefer Not to Say'}, inplace=True)
+
+    # add the rows with the calcualted average
+    data = calculate_average(data)
+
+    # print(data)
+
+    # export the data
+    data.to_csv(f'../results/demographic[{year}].csv', index=True)
+
+
+if __name__ == '__main__':
+    main()
