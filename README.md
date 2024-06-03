@@ -29,7 +29,7 @@ Please use `python run_{}.py -h` in the command line which can show the help mes
 
 ### Dependencies
 - __Pandas__ - For data manipulation and analysis.
-- __NumPy__ - For numerical data processing.
+- __NumPy__ - For numerical data processing.\
 The package versions can be installed via `pip install -r requirements.txt`.
 
 ## Contact
