@@ -20,7 +20,7 @@ There will be two output files of this scripts which will be named: \
 (1) `percentage_project[current_year].csv`, \
 (2) `percentage_project_questions[current_year].txt`.
 
-Note:\
+Note:
 - Please use `python run_{}.py -h` in the command line which can show the help message of what argument to put in.
 - All the output files will be in the same directory as the input files.
 
