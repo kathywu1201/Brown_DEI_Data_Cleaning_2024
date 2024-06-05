@@ -16,9 +16,13 @@ The output file of this script will be named `demographics[semester].csv`.
 
 __run_survey.py:__ (1) This script processes survey data into a CSV file where each row corresponds to a response to a survey question, and each column represents different demographic categories across all survey tabs. (2) Outputs a text file that contains the full text of each survey question, providing clarity on the data processed in other scripts.\
 Please use `python run_survey.py 'input_file_path'` to run this script.\
-There will be two output files of this scripts, they will be named (1) `percentage_project[current_year].csv`, (2) `percentage_project_questions[current_year].txt`.
+There will be two output files of this scripts which will be named: \
+(1) `percentage_project[current_year].csv`, \
+(2) `percentage_project_questions[current_year].txt`.
 
-Please use `python run_{}.py -h` in the command line which can show the help message of what argument to put in.
+Note:\
+- Please use `python run_{}.py -h` in the command line which can show the help message of what argument to put in.
+- All the output files will be in the same directory as the input files.
 
 ## Built With
 - __Python__ - Main programming languge used
