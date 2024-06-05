@@ -10,7 +10,7 @@ __run_concentration.py:__ This script outputs a CSV file listing the concentrati
 Please use `python run_concentration.py 'input_file_path'` to run this script.\
 The output file of this script will be named `concentration[current_year].csv`.
 
-__run_demographics_individual.py:__ This script generates a CSV file for a selected semester, detailing the courses offered in the Computer Science Department along with their course levels. Each column represents different demographic categories, with the sum of percentages under each category totaling 100%. This script also calculates the average percentage across all courses at each course level.\
+__run_demographics.py:__ This script generates a CSV file for a selected semester, detailing the courses offered in the Computer Science Department along with their course levels. Each column represents different demographic categories, with the sum of percentages under each category totaling 100%. This script also calculates the average percentage across all courses at each course level.\
 Please use `python run_demographics.py 'input_file_path'` to run this script.\
 The output file of this script will be named `demographics[semester].csv`.
 
