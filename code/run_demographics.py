@@ -18,7 +18,7 @@ Note: The output files will be in the same directory as the input file.
 #############################################
 
 # example command line of running this script
-# python run_demographics.py 'input_path'
+# python run_demographics.py 'input_file_path'
 # python run_demographics.py '../data/Course Demographics Example.xlsx'
 
 
@@ -46,7 +46,6 @@ def main():
 
         # apply course_level
         data = apply_courselevel(data)
-        # print(data)
 
         # calculate the column percentage
         data = calculate_percentage_new(data)
