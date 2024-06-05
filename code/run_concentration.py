@@ -2,34 +2,37 @@ import pandas as pd
 import numpy as np
 import argparse
 from datetime import datetime
+import os
 from utils_concentration import *
 import warnings
 warnings.filterwarnings('ignore')
 
 #############################################
-# This script outputs a CSV file listing the concentrations within the Computer Science Department. 
-# Each row represents a concentration, and each column shows the percentage of students in various categories. 
-# The script concludes with a summary row that calculates the average percentage for each category.
+'''
+(1) This script outputs a CSV file listing the concentrations within the Computer Science Department. 
+Each row represents a concentration, and each column shows the percentage of students in various categories. 
+The script concludes with a summary row that calculates the average percentage for each category.
+- return concentration.csv
+
+Note: The output files will be in the same directory as the input file.
+'''
 #############################################
 
 # example command line of running this script
-# python run_concentration.py 'input_path' 'output_path'
-# python run_concentration.py '../data/Concentration Demographics Example.xlsx' '../results'
+# python run_concentration.py 'input_file_path'
+# python run_concentration.py '../data/Concentration Demographics Example.xlsx'
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('input_file', type=str, help='The path to the input file')
-    parser.add_argument('output_file', type=str, help='The path to the output file')
     
     args = parser.parse_args()
     
-    input_path = args.input_file
-    output_path = args.output_file
+    input_file_path = args.input_file
+    input_directory = os.path.dirname(input_file_path)
     
-    print(f"Reading data from {input_path}")
-    print(f"Output will be saved to {output_path}")
-
+    print(f"Reading data from {input_file_path}")
 
     # concentration abbrev.
     concentration_dict = {
@@ -43,7 +46,7 @@ def main():
     current_year = datetime.now().year
 
     # load all sheets
-    all_sheets = load_spreadsheet(input_path)
+    all_sheets = load_spreadsheet(input_file_path)
 
     # concat all sheets into one dataframe + filling the nan with 'N' or 'None'
     data = concat_sheets(all_sheets)
@@ -70,7 +73,7 @@ def main():
     data['Concentration'] = data['Concentration'].replace(concentration_dict)
     # print(data)
 
-    data.to_csv(f'{output_path}/concentration[{current_year}].csv', index=True)
+    data.to_csv(f'{input_directory}/concentration[{current_year}].csv', index=True)
 
 
 if __name__ == '__main__':
